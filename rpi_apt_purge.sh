@@ -5,5 +5,10 @@ sudo apt purge linux-libc-dev libmnl-dev* libraspberrypi-dev* libraspberrypi-doc
 sudo apt purge gcc-4.6* gcc-4.7* gcc-4.8* gcc-4.9* gcc-5* libc-l10n tzdata -y
 
 sudo apt purge perl groff-base man-db geoid-database cpp cpp-6  -y
+
+#beloe are nice to have packages
+
+sudo apt purge aptitude* -y 
+
 # from below removed some questionable packages
 sudo apt purge libicu* -y
