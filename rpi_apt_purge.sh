@@ -4,4 +4,6 @@ sudo apt purge v4l-utils xml-core libpython3* debconf-i18n xz-utils bzip* unzip*
 sudo apt purge linux-libc-dev libmnl-dev* libraspberrypi-dev* libraspberrypi-doc -y
 sudo apt purge gcc-4.6* gcc-4.7* gcc-4.8* gcc-4.9* gcc-5* libc-l10n tzdata -y
 
-sudp apt purge perl groff-base man-db geoid-database cpp cpp-6  -y
+sudo apt purge perl groff-base man-db geoid-database cpp cpp-6  -y
+# from below removed some questionable packages
+sudo apt purge libicu* -y
