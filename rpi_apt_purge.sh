@@ -1,4 +1,7 @@
 #/bin/bash
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
 sudo apt purge apt-utils manpages python* ssh* openssh* vim-tiny vim-common ed xxd info install-info dc dos* cifs-utils libx11-data -y
 sudo apt purge v4l-utils xml-core libpython3* debconf-i18n xz-utils bzip* unzip* tasksel rsyslog logrotate libpam-chksshpwd debconf-utils -y
 sudo apt purge linux-libc-dev libmnl-dev* libraspberrypi-dev* libraspberrypi-doc -y
@@ -12,3 +15,5 @@ sudo apt purge perl groff-base man-db geoid-database cpp cpp-6  -y
 
 # from below removed some questionable packages
 #sudo apt purge libicu* -y
+
+sudo rpi-update .
