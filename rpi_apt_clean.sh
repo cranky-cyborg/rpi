@@ -4,20 +4,20 @@ sudo apt-get clean -y
 sudo apt clean -y
 
 # delete unused kernel module folder
-sudo rm -rf /lib/modules/4.14.79-v7+/
 sudo rm -rf /var/cache/man/
 sudo rm -rf /usr/share/doc/
 sudo rm -rf /usr/share/man/
 sudo rm -rf /usr/share/locale/
 sudo rm -rf /etc/sgml/
 #make sure to do an upgrade to 4.19 using rpi-upgrade, or else you just bricked.
+sudo rm -rf /lib/modules/4.14.79-v7+/
 sudo rm -rf /lib/modules/4.14.*
 sudo rm -rf /lib/modules/4.19.32+
 sudo rm -rf /boot.bak
 
 #removing swap file
-sudo swapoff /var/swap
-sudo rm /var/swap
+#sudo swapoff /var/swap
+#sudo rm /var/swap
 
 
 #must create a swap file on restoring the image.
