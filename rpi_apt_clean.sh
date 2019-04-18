@@ -9,7 +9,7 @@ sudo rm -rf /usr/share/doc/
 sudo rm -rf /usr/share/man/
 sudo rm -rf /usr/share/locale/
 sudo rm -rf /etc/sgml/
-sudo rm -rf /opt/var/lib/pkgconfig/
+sudo rm -rf /opt/vc/lib/pkgconfig/
 
 #make sure to do an upgrade to 4.19 using rpi-upgrade, or else you just bricked.
 kerver = $(uname -r)
