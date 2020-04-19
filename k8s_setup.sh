@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 #Note: This script must be run with superuser previliges (sudo)
 
@@ -32,7 +32,7 @@ echo "As this machine will become a node (or master) of kubernetes"
 echo "it is recommeded that you follow a pattern, something like 'node-001'"
 echo "This will ensure, your machine naming is consistent and easy to identify".
 echo " "
-read -p "Now, what do you want to name this machine: " newHostName
+read -p "New Hostname: " newHostName
 
 hostnamectl set-hostname $newHostName
 
