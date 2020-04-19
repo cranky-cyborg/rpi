@@ -1,42 +1,40 @@
 #/bin/bash
 
-sudo dphys-swapfile swapoff
-sudo dphys-swapfile uninstall
-sudo update-rc.d dphys-swapfile remove
+#Note: This script must be run with superuser previliges (sudo)
 
-sudo apt-get install ufw
+# This script performs various activities to setup Kubernetes
+# Performs Pre-requisites
+# - Turn Swapoff
+# - Firewall 
+# - Setup network bridge 
+# - Install docker
+# - setup cgroup set
+# - add Kubernetes repo
+# - install kubernetes
 
-sudo ufw allow 6443
-sudo ufw allow 2379
-sudo ufw allow 10250:10252/tcp
-sudo ufw allow 30000:32767/tcp
+#prior the these, it help you with
+# - reset password
+# - reset hostname
+# - setup WiFi
+# - Change Locale
+# - change Timezone
+# - change keyboard
+# - enable ssh interface
+# - Expand filesystem
+# - Memory Split to 32
 
-sudo ufw enable
+echo "Below you will be prompted to reset your password."
+echo " RaspberryPi default password is 'raspberry'."
+passwd -q
 
-sudo modprobe br_netfilter
+echo "Hope that went well!, Now lets change the host name."
+echo "As this machine will become a node (or master) of kubernetes"
+echo "it is recommeded that you follow a pattern, something like 'node-001'"
+echo "This will ensure, your machine naming is consistent and easy to identify".
+echo ""
+read "Now, what do you want to name this machine: " machinenane
 
-sudo cat <<EOF > /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-EOF
+hostnamectl set-hostname $machinename
 
-sudo sysctl --system
+hostnamectl
 
-sudo curl -sSL https://get.docker.com | sh && sudo usermod pi -aG docker
-
-echo Adding " cgroup_enable=cpuset cgroup_enable=memory" to /boot/cmdline.txt
-
-sudo cp /boot/cmdline.txt /boot/cmdline_bkup.txt
-
-sudo orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_enable=memory"
-
-echo $orig | tee /boot/cmdline.txt
-
-sudo apt-get update && sudo apt-get install -y apt-transport-https curl
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-deb https://apt.kubernetes.io/ kubernetes-xenial main
-EOF
-sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
-sudo apt-mark hold kubelet kubeadm kubectl
