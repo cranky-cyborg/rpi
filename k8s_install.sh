@@ -54,7 +54,7 @@ EOF
 
 cp /boot/cmdline.txt /boot/cmdline_bkup.txt
 
-orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_enable=memory"
+orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_enable=memory cgroup_driver=systemd"
 
 echo $orig | tee /boot/cmdline.txt
 
