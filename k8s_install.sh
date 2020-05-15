@@ -39,6 +39,10 @@ EOF
 sudo sysctl --system
 
 
+### install docker
+
+sudo curl -sSL https://get.docker.com | sh && sudo usermod -aG docker pi
+
 ### setting up cgroupdriver  & other cgroup settings
 cat > /etc/docker/daemon.json <<EOF
 {
@@ -51,7 +55,6 @@ cat > /etc/docker/daemon.json <<EOF
 }
 EOF
 
-
 cp /boot/cmdline.txt /boot/cmdline_bkup.txt
 
 orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_enable=memory cgroup_driver=systemd"
@@ -59,10 +62,6 @@ orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_enable=memory cg
 echo $orig | tee /boot/cmdline.txt
 
 cat /boot/cmdline.txt
-
-### install docker
-
-sudo curl -sSL https://get.docker.com | sh && sudo usermod -aG docker pi
 
 ### setting up apt-get for k8s, because we need that
 
